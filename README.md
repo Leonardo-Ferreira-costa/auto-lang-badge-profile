@@ -41,3 +41,33 @@ O badge é:
 3. **Adicione ao seu README.md**:
    ```markdown
    ![Languages Badge](https://raw.githubusercontent.com/SEU_USUARIO/auto-lang-badge-profile/main/assets/languages-badge.svg)
+
+---
+
+🔧 Como funciona
+GitHub Actions executa o script a cada 6 horas
+
+O script busca todos os seus repositórios via API do GitHub
+
+Conta os bytes de cada linguagem em todos os repositórios
+
+Calcula a porcentagem de uso de cada linguagem
+
+Gera um SVG bonito com os resultados
+
+Atualiza o arquivo assets/languages-badge.svg
+
+
+---
+
+🛠️ Tecnologias Utilizadas
+Node.js - Ambiente de execução do script
+
+GitHub Actions - Automação e atualização
+
+GitHub API - Busca de repositórios e linguagens
+
+SVG - Geração do badge
+
+
+<div align="center"> <sub>Feito com ❤️ por <a href="https://github.com/Leonardo-Ferreira-costa">Leonardo Ferreira </a></sub> <br> <sub>⭐ Se gostou, deixe uma estrela!</sub> </div> 
