@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="736" height="311" viewBox="0 0 736 311">
-  <!-- Gerado em: 2026-08-31T15:35:06.983Z -->
+  <!-- Gerado em: 2026-08-31T15:47:08.562Z -->
   
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
@@ -56,7 +56,7 @@
   
   <!-- Barra de progresso -->
   <rect x="36" y="130" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="36" y="130" width="65.45452110579835" height="4" rx="2" fill="#f1e05a" opacity="0.9"/>
+  <rect x="36" y="130" width="65.46414393158935" height="4" rx="2" fill="#f1e05a" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="196" y="88" width="160" height="55" rx="8" fill="#c6538c08" filter="url(#shadow)"/>
   <rect x="196" y="88" width="160" height="55" rx="8" fill="none" stroke="#c6538c25" stroke-width="1"/>
@@ -82,7 +82,7 @@
   
   <!-- Barra de progresso -->
   <rect x="208" y="130" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="208" y="130" width="29.714577899250965" height="4" rx="2" fill="#c6538c" opacity="0.9"/>
+  <rect x="208" y="130" width="29.710524652876295" height="4" rx="2" fill="#c6538c" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="368" y="88" width="160" height="55" rx="8" fill="#3178c608" filter="url(#shadow)"/>
   <rect x="368" y="88" width="160" height="55" rx="8" fill="none" stroke="#3178c625" stroke-width="1"/>
@@ -108,7 +108,7 @@
   
   <!-- Barra de progresso -->
   <rect x="380" y="130" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="380" y="130" width="21.222416674022018" height="4" rx="2" fill="#3178c6" opacity="0.9"/>
+  <rect x="380" y="130" width="21.21952180929476" height="4" rx="2" fill="#3178c6" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="540" y="88" width="160" height="55" rx="8" fill="#e34c2608" filter="url(#shadow)"/>
   <rect x="540" y="88" width="160" height="55" rx="8" fill="none" stroke="#e34c2625" stroke-width="1"/>
@@ -134,7 +134,7 @@
   
   <!-- Barra de progresso -->
   <rect x="552" y="130" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="552" y="130" width="9.726472262211658" height="4" rx="2" fill="#e34c26" opacity="0.9"/>
+  <rect x="552" y="130" width="9.725145513146977" height="4" rx="2" fill="#e34c26" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="24" y="155" width="160" height="55" rx="8" fill="#4F5D9508" filter="url(#shadow)"/>
   <rect x="24" y="155" width="160" height="55" rx="8" fill="none" stroke="#4F5D9525" stroke-width="1"/>
@@ -160,7 +160,7 @@
   
   <!-- Barra de progresso -->
   <rect x="36" y="197" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="36" y="197" width="6.465809793674804" height="4" rx="2" fill="#4F5D95" opacity="0.9"/>
+  <rect x="36" y="197" width="6.464927818497691" height="4" rx="2" fill="#4F5D95" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="196" y="155" width="160" height="55" rx="8" fill="#563d7c08" filter="url(#shadow)"/>
   <rect x="196" y="155" width="160" height="55" rx="8" fill="none" stroke="#563d7c25" stroke-width="1"/>
@@ -186,7 +186,7 @@
   
   <!-- Barra de progresso -->
   <rect x="208" y="197" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="208" y="197" width="2.291582333766538" height="4" rx="2" fill="#563d7c" opacity="0.9"/>
+  <rect x="208" y="197" width="2.291269748212804" height="4" rx="2" fill="#563d7c" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="368" y="155" width="160" height="55" rx="8" fill="#3572A508" filter="url(#shadow)"/>
   <rect x="368" y="155" width="160" height="55" rx="8" fill="none" stroke="#3572A525" stroke-width="1"/>
@@ -212,7 +212,7 @@
   
   <!-- Barra de progresso -->
   <rect x="380" y="197" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="380" y="197" width="0.7053223317577665" height="4" rx="2" fill="#3572A5" opacity="0.9"/>
+  <rect x="380" y="197" width="0.7052261215678097" height="4" rx="2" fill="#3572A5" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="540" y="155" width="160" height="55" rx="8" fill="#6e768108" filter="url(#shadow)"/>
   <rect x="540" y="155" width="160" height="55" rx="8" fill="none" stroke="#6e768125" stroke-width="1"/>
@@ -238,7 +238,7 @@
   
   <!-- Barra de progresso -->
   <rect x="552" y="197" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="552" y="197" width="0.35915619416908373" height="4" rx="2" fill="#6e7681" opacity="0.9"/>
+  <rect x="552" y="197" width="0.3591072031133503" height="4" rx="2" fill="#6e7681" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="24" y="222" width="160" height="55" rx="8" fill="#89e05108" filter="url(#shadow)"/>
   <rect x="24" y="222" width="160" height="55" rx="8" fill="none" stroke="#89e05125" stroke-width="1"/>
@@ -264,7 +264,7 @@
   
   <!-- Barra de progresso -->
   <rect x="36" y="264" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="36" y="264" width="0.04280509741020639" height="4" rx="2" fill="#89e051" opacity="0.9"/>
+  <rect x="36" y="264" width="0.0427992585385763" height="4" rx="2" fill="#89e051" opacity="0.9"/>
   <!-- Card da linguagem -->
   <rect x="196" y="222" width="160" height="55" rx="8" fill="#6e768108" filter="url(#shadow)"/>
   <rect x="196" y="222" width="160" height="55" rx="8" fill="none" stroke="#6e768125" stroke-width="1"/>
@@ -290,7 +290,7 @@
   
   <!-- Barra de progresso -->
   <rect x="208" y="264" width="136" height="4" rx="2" fill="#21262d"/>
-  <rect x="208" y="264" width="0.017336307938604634" height="4" rx="2" fill="#6e7681" opacity="0.9"/>
+  <rect x="208" y="264" width="0.017333943162381307" height="4" rx="2" fill="#6e7681" opacity="0.9"/>
   
   <!-- Rodapé -->
   <text x="368" y="299" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#484f58" text-anchor="middle">
