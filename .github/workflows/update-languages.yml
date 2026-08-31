@@ -2,16 +2,10 @@ name: Atualizar Badge de Linguagens
 
 on:
   schedule:
-    # Executa a cada 6 horas
     - cron: '0 */6 * * *'
-  # Executa manualmente via botão
   workflow_dispatch:
-  # Executa quando houver push na main
   push:
     branches: [ main, master ]
-  # Executa quando houver push que modifica o script
-  paths:
-    - 'scripts/generate-badge.js'
 
 jobs:
   update-badge:
@@ -20,49 +14,25 @@ jobs:
       contents: write
     
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           
-      - name: Instalar dependências
-        run: npm install -g fetch
-        
-      - name: Gerar badge de linguagens
+      - name: Gerar badge
         run: node scripts/generate-badge.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           
-      - name: Verificar se o badge foi gerado
-        run: |
-          if [ ! -f assets/languages-badge.svg ]; then
-            echo "❌ Badge não foi gerado!"
-            exit 1
-          fi
-          echo "✅ Badge gerado com sucesso!"
-          echo "📏 Tamanho: $(wc -c < assets/languages-badge.svg) bytes"
-          
       - name: Commit e push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          # Adiciona o badge
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           git add assets/languages-badge.svg
-          
-          # Verifica se há mudanças
-          if git diff --staged --quiet; then
-            echo "ℹ️ Nenhuma mudança no badge"
-          else
-            TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M:%S')
-            git commit -m "🤖 Atualizar badge de linguagens [${TIMESTAMP}] [skip ci]"
-            git push
-            echo "✅ Badge atualizado e enviado!"
-          fi
+          git diff --staged --quiet || git commit -m "🤖 Atualizar badge [$(date -u +'%Y-%m-%d %H:%M:%S')] [skip ci]"
+          git push
