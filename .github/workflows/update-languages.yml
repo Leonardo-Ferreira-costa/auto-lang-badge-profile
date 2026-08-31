@@ -1,0 +1,50 @@
+name: Atualizar Badge de Linguagens
+
+on:
+  schedule:
+    # Executa diariamente às 00:00
+    - cron: '0 0 * * *'
+  # Executa manualmente via botão
+  workflow_dispatch:
+  # Executa quando houver push na main
+  push:
+    branches: [ main, master ]
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Instalar dependências
+        run: |
+          npm install -g fetch
+          # Ou se preferir usar yarn
+          # yarn global add fetch
+          
+      - name: Gerar badge de linguagens
+        run: node scripts/generate-badge.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+          
+      - name: Commit e push das alterações
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add assets/languages-badge.svg
+          git diff --staged --quiet || git commit -m "🤖 Atualizar badge de linguagens [skip ci]"
+          git push
