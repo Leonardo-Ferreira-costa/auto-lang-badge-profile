@@ -105,20 +105,31 @@ async function generateBadge() {
       }
     }
     
+    // Filtrar linguagens com 0% e ordenar
     const languages = Object.entries(languageCount)
       .map(([name, bytes]) => ({
         name,
         bytes,
         percentage: ((bytes / totalBytes) * 100)
       }))
+      .filter(lang => lang.percentage > 0) // Remove linguagens com 0%
       .sort((a, b) => b.bytes - a.bytes)
-      .slice(0, 10);
+      .slice(0, 10); // Top 10
     
-    console.log(`📊 ${languages.length} linguagens encontradas`);
+    console.log(`📊 ${languages.length} linguagens encontradas (acima de 0%)`);
+    
+    if (languages.length === 0) {
+      console.log('⚠️ Nenhuma linguagem encontrada!');
+      // Gera um badge informativo
+      const fallbackSVG = generateFallbackSVG(username);
+      const outputPath = path.join(process.cwd(), 'assets', 'languages-badge.svg');
+      fs.writeFileSync(outputPath, fallbackSVG);
+      console.log('✅ Badge de fallback gerado');
+      return;
+    }
     
     const svg = generateCleanSVG(languages, username);
     
-    // Salva com nome fixo
     const outputPath = path.join(process.cwd(), 'assets', 'languages-badge.svg');
     fs.writeFileSync(outputPath, svg);
     
@@ -132,17 +143,17 @@ async function generateBadge() {
 }
 
 function generateCleanSVG(languages, username) {
-  // Layout fixo com espaçamento adequado
-  const itemWidth = 140;
-  const itemHeight = 50;
-  const gap = 10;
-  const padding = 20;
+  // Layout com espaçamento adequado para nome + porcentagem
+  const itemWidth = 160; // Aumentado para dar mais espaço
+  const itemHeight = 55;
+  const gap = 12;
+  const padding = 24;
   
-  const cols = Math.min(5, languages.length);
+  const cols = Math.min(4, languages.length); // 4 colunas para melhor visualização
   const rows = Math.ceil(languages.length / cols);
   
-  const width = cols * (itemWidth + gap) + padding * 2 + 20;
-  const height = rows * (itemHeight + gap) + 100;
+  const width = cols * (itemWidth + gap) + padding * 2;
+  const height = rows * (itemHeight + gap) + 110;
   
   const timestamp = new Date().toISOString();
   
@@ -152,7 +163,7 @@ function generateCleanSVG(languages, username) {
   
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/>
     </filter>
     
     <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -162,8 +173,8 @@ function generateCleanSVG(languages, username) {
   </defs>
   
   <!-- Fundo principal -->
-  <rect width="${width}" height="${height}" rx="12" fill="#0d1117"/>
-  <rect width="${width}" height="${height}" rx="12" fill="none" stroke="#30363d" stroke-width="1.5"/>
+  <rect x="0" y="0" width="${width}" height="${height}" rx="12" fill="#0d1117"/>
+  <rect x="0" y="0" width="${width}" height="${height}" rx="12" fill="none" stroke="#30363d" stroke-width="1.5"/>
   
   <!-- Header com gradiente -->
   <rect x="0" y="0" width="${width}" height="4" rx="2" fill="url(#headerGrad)"/>
@@ -174,7 +185,7 @@ function generateCleanSVG(languages, username) {
   </text>
   
   <text x="${width / 2}" y="58" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#8b949e" text-anchor="middle">
-    @${username} • Atualizado em ${new Date().toLocaleDateString('pt-BR')}
+    @${username} • ${new Date().toLocaleDateString('pt-BR')}
   </text>
   
   <!-- Linha separadora -->
@@ -189,36 +200,37 @@ function generateCleanSVG(languages, username) {
       const lang = languages[index];
       const color = languageColors[lang.name] || '#6e7681';
       
-      const x = padding + 10 + col * (itemWidth + gap);
-      const y = 85 + row * (itemHeight + gap);
+      const x = padding + col * (itemWidth + gap);
+      const y = 88 + row * (itemHeight + gap);
       
       // Card
       svg += `
-  <rect x="${x}" y="${y}" width="${itemWidth}" height="${itemHeight}" rx="8" fill="${color}10" filter="url(#shadow)"/>
-  <rect x="${x}" y="${y}" width="${itemWidth}" height="${itemHeight}" rx="8" fill="none" stroke="${color}30" stroke-width="1"/>
+  <!-- Card da linguagem -->
+  <rect x="${x}" y="${y}" width="${itemWidth}" height="${itemHeight}" rx="8" fill="${color}08" filter="url(#shadow)"/>
+  <rect x="${x}" y="${y}" width="${itemWidth}" height="${itemHeight}" rx="8" fill="none" stroke="${color}25" stroke-width="1"/>
   
   <!-- Barra de cor no topo -->
-  <rect x="${x + 4}" y="${y + 4}" width="${itemWidth - 8}" height="3" rx="1.5" fill="${color}" opacity="0.8"/>
+  <rect x="${x + 6}" y="${y + 6}" width="${itemWidth - 12}" height="3" rx="1.5" fill="${color}" opacity="0.8"/>
   
-  <!-- Círculo da linguagem -->
-  <circle cx="${x + 20}" cy="${y + 28}" r="8" fill="${color}"/>
-  <text x="${x + 20}" y="${y + 32}" font-family="Arial" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">
+  <!-- Círculo da linguagem com a primeira letra -->
+  <circle cx="${x + 22}" cy="${y + 30}" r="10" fill="${color}"/>
+  <text x="${x + 22}" y="${y + 34}" font-family="Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">
     ${lang.name.charAt(0)}
   </text>
   
-  <!-- Nome da linguagem -->
-  <text x="${x + 36}" y="${y + 26}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#e6edf3" font-weight="500">
+  <!-- Nome da linguagem (alinhado à esquerda) -->
+  <text x="${x + 40}" y="${y + 28}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#e6edf3" font-weight="500">
     ${lang.name}
   </text>
   
-  <!-- Porcentagem -->
-  <text x="${x + itemWidth - 12}" y="${y + 26}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="${color}" font-weight="700" text-anchor="end">
+  <!-- Porcentagem (alinhado à direita, com destaque) -->
+  <text x="${x + itemWidth - 10}" y="${y + 28}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="${color}" font-weight="700" text-anchor="end">
     ${lang.percentage.toFixed(1)}%
   </text>
   
   <!-- Barra de progresso -->
-  <rect x="${x + 12}" y="${y + 40}" width="${itemWidth - 24}" height="4" rx="2" fill="#21262d"/>
-  <rect x="${x + 12}" y="${y + 40}" width="${(itemWidth - 24) * (lang.percentage / 100)}" height="4" rx="2" fill="${color}" opacity="0.9"/>`;
+  <rect x="${x + 12}" y="${y + 42}" width="${itemWidth - 24}" height="4" rx="2" fill="#21262d"/>
+  <rect x="${x + 12}" y="${y + 42}" width="${(itemWidth - 24) * (lang.percentage / 100)}" height="4" rx="2" fill="${color}" opacity="0.9"/>`;
       
       index++;
     }
@@ -229,12 +241,32 @@ function generateCleanSVG(languages, username) {
   
   <!-- Rodapé -->
   <text x="${width / 2}" y="${height - 12}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" fill="#484f58" text-anchor="middle">
-    🔄 Gerado automaticamente via GitHub Actions • ${timestamp.split('T')[0]}
+    🔄 Atualizado automaticamente • ${timestamp.split('T')[0]}
   </text>
   
 </svg>`;
   
   return svg;
+}
+
+function generateFallbackSVG(username) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="100">
+  <rect width="500" height="100" rx="12" fill="#0d1117"/>
+  <rect width="500" height="100" rx="12" fill="none" stroke="#30363d" stroke-width="1.5"/>
+  
+  <text x="250" y="40" font-family="Arial" font-size="16" fill="#e6edf3" text-anchor="middle" font-weight="bold">
+    📊 Minhas Linguagens Mais Usadas
+  </text>
+  
+  <text x="250" y="65" font-family="Arial" font-size="14" fill="#8b949e" text-anchor="middle">
+    Nenhuma linguagem encontrada para @${username}
+  </text>
+  
+  <text x="250" y="85" font-family="Arial" font-size="11" fill="#484f58" text-anchor="middle">
+    Verifique se você tem repositórios públicos com linguagens
+  </text>
+</svg>`;
 }
 
 // Executar
