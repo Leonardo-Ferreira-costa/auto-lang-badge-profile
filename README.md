@@ -2,7 +2,7 @@
 
 ## 📊 Minhas Linguagens Mais Usadas
 
-![Languages Badge](https://raw.githubusercontent.com/Leonardo-Ferreira-costa/auto-lang-badge-profile/main/assets/badge-template.svg)
+![Languages Badge](https://raw.githubusercontent.com/Leonardo-Ferreira-costa/auto-lang-badge-profile/main/assets/languages-badge.svg)
 
 
 ## Use:
