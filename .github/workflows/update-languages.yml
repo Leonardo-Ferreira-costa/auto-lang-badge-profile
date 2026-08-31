@@ -45,6 +45,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add assets/languages-badge.svg
+          git add assets/badge-template.svg
           git diff --staged --quiet || git commit -m "🤖 Atualizar badge de linguagens [skip ci]"
           git push
